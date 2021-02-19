@@ -27,20 +27,32 @@ class Disbursement extends REST_Controller {
 
     // insert disbursement
     $model_dis = $this->DisbursementModel;
-    $model_dis->bank_code = ;
-    $model_dis->account_number = ;
-    $model_dis->recipient_name = ;
-    $model_dis->amount = ;
+    $model_dis->bank_code = $req->bank_code;
+    $model_dis->account_number = $req->account_number;
+    $model_dis->recipient_name = $res['account_name'];;
+    $model_dis->amount = $req->amount;
     $model_dis->status = 'PENDING' ;
-    $model_dis->sender_bank = ;
-    $model_dis->remark = ;
+    $model_dis->sender_bank = $req->sender_bank;
+    $model_dis->remark = $req->remark;
+    $res_id = $model_dis->insert();
 
 
-    // $res = $model->find($res_id)->row_array();
-    // $this->response($json,REST_Controller::HTTP_CREATED);
+    $res = $model_dis->find($res_id)->row_array();
+    $this->response($res,REST_Controller::HTTP_CREATED);
   }
 
   public function index_put($id){
+    // request
+    $json = file_get_contents('php://input');
+    $req = json_decode($json);
+
+    $model = $this->DisbursementModel;
+    $model->status = $req->status;
+    $model->update($id);
+
+    $res = $model->find($id)->row_array();
+    $this->response($res, REST_Controller::HTTP_OK);
+
 
   }
 
