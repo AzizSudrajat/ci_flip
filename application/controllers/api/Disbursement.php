@@ -11,6 +11,22 @@ class Disbursement extends REST_Controller {
   }
 
 	public function index_get($id = 0){
+    $model = $this->DisbursementModel;
+    if(!empty($id)){
+      $model->where('id', $id);
+      $data = $model->get()->row_array();
+    }else{
+      $data = $model->get()->result();
+    }
+
+    if (!empty($data)) {
+      $this->response($data, REST_Controller::HTTP_OK);
+    }else{
+      $res = [
+        'data' => 'Not Found'
+      ];
+      $this->response($res, REST_Controller::HTTP_NOT_FOUND);
+    }
 
   }
 
