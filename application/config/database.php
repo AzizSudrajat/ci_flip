@@ -73,13 +73,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $CI = get_instance();
 $active_group = 'default';
 $query_builder = TRUE;
+//Add this to fetch the CLEARDB_DATABASE_URL
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => $CI->config->item('database_host'),
-	'username' => $CI->config->item('database_user'),
-	'password' => $CI->config->item('database_pass'),
-	'database' => $CI->config->item('database_name'),
+	// 'hostname' => $CI->config->item('database_host'),
+	// 'username' => $CI->config->item('database_user'),
+	// 'password' => $CI->config->item('database_pass'),
+	// 'database' => $CI->config->item('database_name'),
+	'hostname' => $url["host"],
+	'username' => $url["user"],
+	'password' => $url["pass"],
+	'database' => substr($url["path"], 1),
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
