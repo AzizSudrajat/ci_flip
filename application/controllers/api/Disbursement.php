@@ -89,9 +89,9 @@ class Disbursement extends REST_Controller {
 
         $img->createImage($text);
         //save image as jpg format
-        $img->saveAsJpg($filename,'public/receipt/');
+        $img->saveAsJpg($filename,'receipt/');
 
-        $model->receipt = base_url('/public/receipt/'.$filename.'.jpg');
+        $model->receipt = base_url('/receipt/'.$filename.'.jpg');
         $model->status = $req->status;
         $model->update($id);
 
