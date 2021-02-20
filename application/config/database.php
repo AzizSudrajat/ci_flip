@@ -74,7 +74,7 @@ $CI = get_instance();
 $active_group = 'default';
 $query_builder = TRUE;
 //Add this to fetch the CLEARDB_DATABASE_URL
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$url = parse_url(getenv("JAWSDB_URL"));
 
 $db['default'] = array(
 	'dsn'	=> '',
