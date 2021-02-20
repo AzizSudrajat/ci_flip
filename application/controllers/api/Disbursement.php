@@ -8,6 +8,8 @@ class Disbursement extends REST_Controller {
      $this->load->model('DisbursementModel');
      $this->load->model('BankUsersModel');
      $this->load->model('BankFlipModel');
+     $this->load->library('TextToImage');
+     $this->load->helper(array('string','url'));
   }
 
 	public function index_get($id = 0){
@@ -45,7 +47,7 @@ class Disbursement extends REST_Controller {
     $model_dis = $this->DisbursementModel;
     $model_dis->bank_code = $req->bank_code;
     $model_dis->account_number = $req->account_number;
-    $model_dis->recipient_name = $res['account_name'];;
+    $model_dis->recipient_name = $res['account_name'];
     $model_dis->amount = $req->amount;
     $model_dis->status = 'PENDING' ;
     $model_dis->sender_bank = $req->sender_bank;
@@ -62,13 +64,49 @@ class Disbursement extends REST_Controller {
     $json = file_get_contents('php://input');
     $req = json_decode($json);
 
+    // random strings
+    $string = 'TRX{$randnum}';
+    $randnum = random_string('numeric',6);
+    $filename = str_replace('{$randnum}', $randnum, $string);
+
+    //model
     $model = $this->DisbursementModel;
-    $model->status = $req->status;
-    $model->update($id);
 
-    $res = $model->find($id)->row_array();
-    $this->response($res, REST_Controller::HTTP_OK);
+    // condision
+    if ($req->status == 'DONE') {
+      $data = $model->find($id)->row_array();
+      if ($data['status'] == 'DONE') {
+        $this->response(['data' => 'Status Already Done'], REST_Controller::HTTP_OK);
+      }else{
+        $img = New TextToImage;
+        //create image from text
+        $text = 'BUKTI TRANSAKSI\n
+        Waktu Terkirim          : '. $data["time_served"] .'
+        Nama Pemerima           : '. $data["recipient_name"] .'
+        Bank Penerima           : '. $data["bank_code"] .'
+        Nomor Rekening Penerima : '. $data["account_number"] .'
+        Berita Transfer         : '. $data["remark"].'\n\n\n\n\n';
 
+        $img->createImage($text);
+        //save image as jpg format
+        $img->saveAsJpg($filename,'public/receipt/');
+
+        $model->receipt = base_url('/public/receipt/'.$filename.'.jpg');
+        $model->status = $req->status;
+        $model->update($id);
+
+        $res = $model->find($id)->row_array();
+        $this->response($res, REST_Controller::HTTP_OK);
+      }
+    } elseif ($req->status = 'CENCELED') {
+      $model->status = $req->status;
+      $model->receipt = '';
+      $model->update($id);
+      $res = $model->find($id)->row_array();
+      $this->response($res, REST_Controller::HTTP_OK);
+    }else {
+      $this->response(['data' => 'Status Not Found'], REST_Controller::HTTP_NOT_FOUND);
+    }
 
   }
 
