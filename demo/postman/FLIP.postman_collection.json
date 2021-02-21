@@ -1,0 +1,454 @@
+{
+	"info": {
+		"_postman_id": "a3c86df5-3a32-40d6-a543-221fa5fc0e4e",
+		"name": "FLIP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Bank Account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bank_code\":\"mandiri\",\n    \"account_number\":\"089992412323\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}/api/bankaccount",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"bankaccount"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET Bank Account",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bank_code\":\"mandiri\",\n    \"account_number\":\"089992412323\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}/api/bankaccount",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"bankaccount"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 21 Feb 2021 01:13:29 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.46 (Unix) OpenSSL/1.1.1i PHP/7.3.27 mod_perl/2.0.11 Perl/v5.32.1"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.27"
+						},
+						{
+							"key": "Content-Length",
+							"value": "114"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"1\",\n    \"bank_code\": \"mandiri\",\n    \"account_number\": \"089992412323\",\n    \"account_name\": \"Aziz Sudrajat\",\n    \"status\": \"SUCCESS\"\n}"
+				}
+			]
+		},
+		{
+			"name": "CREATE Disbursement",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"account_number\": \"089992412323\",\n    \"bank_code\": \"mandiri\",\n    \"amount\": 100000,\n    \"remark\": \"Aziz Sudrajat\",\n    \"sender_bank\":\"bca\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}/api/disbursement",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"disbursement"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "CREATE Disbursement",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"account_number\": \"089992412323\",\n    \"bank_code\": \"mandiri\",\n    \"amount\": 100000,\n    \"remark\": \"Aziz Sudrajat\",\n    \"sender_bank\":\"bca\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}/api/disbursement",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"disbursement"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 21 Feb 2021 01:13:43 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.46 (Unix) OpenSSL/1.1.1i PHP/7.3.27 mod_perl/2.0.11 Perl/v5.32.1"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.27"
+						},
+						{
+							"key": "Content-Length",
+							"value": "262"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=98"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"9\",\n    \"amount\": \"100000\",\n    \"status\": \"PENDING\",\n    \"timestamp\": \"2021-02-21 08:13:43\",\n    \"bank_code\": \"mandiri\",\n    \"account_number\": \"089992412323\",\n    \"recipient_name\": \"Aziz Sudrajat\",\n    \"sender_bank\": \"bca\",\n    \"remark\": \"Aziz Sudrajat\",\n    \"receipt\": \"\",\n    \"time_served\": \"2021-02-21 08:13:43\"\n}"
+				}
+			]
+		},
+		{
+			"name": "PUT Approve/Reject",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\":\"DONE\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}/api/disbursement/9",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"disbursement",
+						"9"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "PUT Approve/Reject",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\":\"DONE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{host}}/api/disbursement/9",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"disbursement",
+								"9"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 21 Feb 2021 01:13:51 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.46 (Unix) OpenSSL/1.1.1i PHP/7.3.27 mod_perl/2.0.11 Perl/v5.32.1"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.27"
+						},
+						{
+							"key": "Content-Length",
+							"value": "307"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"9\",\n    \"amount\": \"100000\",\n    \"status\": \"DONE\",\n    \"timestamp\": \"2021-02-21 08:13:43\",\n    \"bank_code\": \"mandiri\",\n    \"account_number\": \"089992412323\",\n    \"recipient_name\": \"Aziz Sudrajat\",\n    \"sender_bank\": \"bca\",\n    \"remark\": \"Aziz Sudrajat\",\n    \"receipt\": \"http://localhost/flip/receipt/TRX632047.jpg\",\n    \"time_served\": \"2021-02-21 08:13:51\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GET ALL Disbursement",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{host}}/api/disbursement",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"disbursement"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET ALL Disbursement",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}/api/disbursement",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"disbursement"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 21 Feb 2021 01:13:34 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.46 (Unix) OpenSSL/1.1.1i PHP/7.3.27 mod_perl/2.0.11 Perl/v5.32.1"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.27"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1725"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"3\",\n        \"amount\": \"10000\",\n        \"status\": \"DONE\",\n        \"timestamp\": \"2021-02-19 23:11:28\",\n        \"bank_code\": \"mandiri\",\n        \"account_number\": \"089992412323\",\n        \"recipient_name\": \"Aziz Sudrajat\",\n        \"sender_bank\": \"bca\",\n        \"remark\": \"Aziz Sudrajat\",\n        \"receipt\": \"http://localhost/flip/public/receipt/TRX973548.jpg\",\n        \"time_served\": \"2021-02-20 19:30:12\"\n    },\n    {\n        \"id\": \"4\",\n        \"amount\": \"10000\",\n        \"status\": \"DONE\",\n        \"timestamp\": \"2021-02-19 23:19:53\",\n        \"bank_code\": \"mandiri\",\n        \"account_number\": \"089992412323\",\n        \"recipient_name\": \"Aziz Sudrajat\",\n        \"sender_bank\": \"bca\",\n        \"remark\": \"Aziz Sudrajat\",\n        \"receipt\": \"http://localhost/flip/public/receipt/TRX127964.jpg\",\n        \"time_served\": \"2021-02-20 19:32:46\"\n    },\n    {\n        \"id\": \"5\",\n        \"amount\": \"10000\",\n        \"status\": \"PENDING\",\n        \"timestamp\": \"2021-02-19 23:19:55\",\n        \"bank_code\": \"mandiri\",\n        \"account_number\": \"089992412323\",\n        \"recipient_name\": \"Aziz Sudrajat\",\n        \"sender_bank\": \"bca\",\n        \"remark\": \"Aziz Sudrajat\",\n        \"receipt\": \"\",\n        \"time_served\": \"2021-02-19 23:19:55\"\n    },\n    {\n        \"id\": \"6\",\n        \"amount\": \"10000\",\n        \"status\": \"PENDING\",\n        \"timestamp\": \"2021-02-19 23:19:56\",\n        \"bank_code\": \"mandiri\",\n        \"account_number\": \"089992412323\",\n        \"recipient_name\": \"Aziz Sudrajat\",\n        \"sender_bank\": \"bca\",\n        \"remark\": \"Aziz Sudrajat\",\n        \"receipt\": \"\",\n        \"time_served\": \"2021-02-19 23:19:56\"\n    },\n    {\n        \"id\": \"7\",\n        \"amount\": \"10000\",\n        \"status\": \"PENDING\",\n        \"timestamp\": \"2021-02-19 23:25:10\",\n        \"bank_code\": \"mandiri\",\n        \"account_number\": \"089992412323\",\n        \"recipient_name\": \"Aziz Sudrajat\",\n        \"sender_bank\": \"bca\",\n        \"remark\": \"Aziz Sudrajat\",\n        \"receipt\": \"\",\n        \"time_served\": \"2021-02-19 23:25:10\"\n    },\n    {\n        \"id\": \"8\",\n        \"amount\": \"100000\",\n        \"status\": \"DONE\",\n        \"timestamp\": \"2021-02-21 07:14:29\",\n        \"bank_code\": \"mandiri\",\n        \"account_number\": \"089992412323\",\n        \"recipient_name\": \"Aziz Sudrajat\",\n        \"sender_bank\": \"bca\",\n        \"remark\": \"Aziz Sudrajat\",\n        \"receipt\": \"http://localhost/flip/receipt/TRX415308.jpg\",\n        \"time_served\": \"2021-02-21 07:14:35\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "GET ONE Disbursement",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{host}}/api/disbursement/8",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"disbursement",
+						"8"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET ONE Disbursement",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{host}}/api/disbursement/8",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"disbursement",
+								"8"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Sun, 21 Feb 2021 01:13:39 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Apache/2.4.46 (Unix) OpenSSL/1.1.1i PHP/7.3.27 mod_perl/2.0.11 Perl/v5.32.1"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.3.27"
+						},
+						{
+							"key": "Content-Length",
+							"value": "307"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=99"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"8\",\n    \"amount\": \"100000\",\n    \"status\": \"DONE\",\n    \"timestamp\": \"2021-02-21 07:14:29\",\n    \"bank_code\": \"mandiri\",\n    \"account_number\": \"089992412323\",\n    \"recipient_name\": \"Aziz Sudrajat\",\n    \"sender_bank\": \"bca\",\n    \"remark\": \"Aziz Sudrajat\",\n    \"receipt\": \"http://localhost/flip/receipt/TRX415308.jpg\",\n    \"time_served\": \"2021-02-21 07:14:35\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GET Receipt",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{host}}/receipt/TRX632047.jpg",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"receipt",
+						"TRX632047.jpg"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
